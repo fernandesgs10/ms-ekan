@@ -51,7 +51,9 @@ public class JwtServiceImpl implements JwtService {
     }
 
     private Key getSignInKey() {
+        //return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey));
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey));
+
     }
 
     private boolean isTokenExpired(String token) {

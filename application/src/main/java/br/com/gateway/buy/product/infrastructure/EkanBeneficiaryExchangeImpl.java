@@ -17,12 +17,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("ALL")
 @Slf4j
 @Repository
 @RequiredArgsConstructor
@@ -37,13 +37,10 @@ public class EkanBeneficiaryExchangeImpl implements EkanBeneficiaryExchange {
         BeneficiaryEntity beneficiaryEntity = (BeneficiaryEntity) object[0];
         String user = (String) object[1];
         beneficiaryEntity.setNmCreated(user);
-        beneficiaryEntity.setDtCreated(LocalDateTime.now());
 
         BeneficiaryEntity beneficiary = beneficiaryRepository.save(beneficiaryEntity);
 
         beneficiaryEntity.getListDocuments().forEach(documentEntity -> {
-            documentEntity.setDtCreated(LocalDateTime.now());
-            documentEntity.setNmCreated(user);
             documentEntity.setBeneficiaryEntity(beneficiary);
             documentaryRepository.save(documentEntity);
         });
@@ -74,7 +71,6 @@ public class EkanBeneficiaryExchangeImpl implements EkanBeneficiaryExchange {
 
             document.setTpDocument(doc.getTpDocument());
             document.setNmDescription(doc.getNmDescription());
-            document.setDtEdited(LocalDateTime.now());
             document.setNmEdited(user);
 
             list.add(documentaryRepository.save(document));
@@ -83,7 +79,6 @@ public class EkanBeneficiaryExchangeImpl implements EkanBeneficiaryExchange {
             beneficiary.setNmName(beneficiaryEntity.getNmName());
             beneficiary.setDdBirthDate(beneficiaryEntity.getDdBirthDate());
             beneficiary.setNmTelephone(beneficiaryEntity.getNmTelephone());
-            beneficiary.setDtEdited(LocalDateTime.now());
             beneficiary.setNmEdited(user);
 
             beneficiary.setListDocuments(list);

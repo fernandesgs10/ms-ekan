@@ -1,30 +1,33 @@
 package br.com.gateway.buy.product.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 
 @Data
-@SuperBuilder
-@NoArgsConstructor
 @MappedSuperclass
-public class CreateUpdateEntity {
+@EntityListeners(AuditingEntityListener.class)
+public abstract class CreateUpdateEntity {
 
     @Column(name = "nm_created", nullable = false, updatable = false)
     private String nmCreated;
 
+    @CreationTimestamp
     @Column(name = "dt_created", nullable = false, updatable = false)
-    private LocalDateTime dtCreated;
+    private Instant dtCreated;
 
     @Column(name = "nm_edited")
     private String nmEdited;
 
-    @Column(name = "dt_edited")
-    private LocalDateTime dtEdited;
+    @UpdateTimestamp
+    @Column(name = "dt_updated", insertable = false)
+    private Instant lastUpdated;
 
 }

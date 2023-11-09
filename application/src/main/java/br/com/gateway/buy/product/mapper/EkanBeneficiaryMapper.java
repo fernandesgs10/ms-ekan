@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -31,7 +30,7 @@ public class EkanBeneficiaryMapper implements Serializable {
             @Override
             protected void configure() {
                     skip(destination.getDtCreated());
-                    skip(destination.getDtEdited());
+                    skip(destination.getLastUpdated());
             }
         });
 
@@ -41,9 +40,5 @@ public class EkanBeneficiaryMapper implements Serializable {
 
     public br.com.muvz.tech.ekan.api.Page converterToPageBeneficiary(Object pageBeneficiary) {
         return modelMapper.map(pageBeneficiary, br.com.muvz.tech.ekan.api.Page.class);
-    }
-
-    public Pageable convertPage(br.com.muvz.tech.ekan.api.Page page) {
-        return modelMapper.map(page, Pageable.class);
     }
 }
