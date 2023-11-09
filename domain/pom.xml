@@ -224,10 +224,10 @@
                                 <java8>true</java8>
                             </configOptions>
                                 <typeMappings>
-                                    <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
+                                    <typeMapping>OffsetDateTime=Instant</typeMapping>
                                 </typeMappings>
                                 <importMappings>
-                                    <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
+                                    <importMapping>java.time.OffsetDateTime=java.time.Instant</importMapping>
                                 </importMappings>
                         </configuration>
                     </execution>

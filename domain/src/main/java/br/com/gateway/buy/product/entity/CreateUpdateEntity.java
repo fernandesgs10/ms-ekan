@@ -27,7 +27,7 @@ public abstract class CreateUpdateEntity {
     private String nmEdited;
 
     @UpdateTimestamp
-    @Column(name = "dt_updated", insertable = false)
-    private Instant lastUpdated;
+    @Column(name = "dt_edited", insertable = false)
+    private Instant dtEdited;
 
 }

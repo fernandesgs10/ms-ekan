@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
+@SuppressWarnings("ClassCanBeRecord")
 @Data
 @Builder
 @Component
@@ -30,7 +31,7 @@ public class EkanBeneficiaryMapper implements Serializable {
             @Override
             protected void configure() {
                     skip(destination.getDtCreated());
-                    skip(destination.getLastUpdated());
+                    skip(destination.getDtEdited());
             }
         });
 
