@@ -100,9 +100,9 @@ public class EkanBeneficiaryExchangeImpl implements EkanBeneficiaryExchange {
         Integer pageSize = (Integer) object[1];
         List<String> sortBy = (List<String>) object[2];
 
-        List<Sort.Order> sort = PaginationSort.getOrders(sortBy);
-        Map<String, String> orderMap = new HashMap<>();
-        orderMap.put("nmName", "nmName");
+            List<Sort.Order> sort = PaginationSort.getOrders(sortBy);
+            Map<String, String> orderMap = new HashMap<>();
+            orderMap.put("nmName", "nmName");
 
         PageRequest paging = PageRequest.of(pageNo, pageSize, Sort.by(sort));
         Pageable pg = PaginationSort.ajustarSort(paging, orderMap);
